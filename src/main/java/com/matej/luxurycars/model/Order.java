@@ -7,11 +7,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 @Entity
-@Table(name = "user")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "order")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;

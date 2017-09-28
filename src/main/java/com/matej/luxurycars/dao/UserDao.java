@@ -6,11 +6,15 @@ package com.matej.luxurycars.dao;
 import java.util.List;
 
 import com.matej.luxurycars.model.User;
+import org.springframework.stereotype.Repository;
 
-public interface UserDao {
-
-    public boolean addEntity(User user) throws Exception;
-    public User getEntityById(long id) throws Exception;
-    public List<User> getEntityList() throws Exception;
-    public boolean deleteEntity(long id) throws Exception;
-}
+//@Repository
+//public interface UserDao {
+//
+////    public boolean addEntity(User user) throws Exception;
+////    public User getEntityById(long id) throws Exception;
+////    public List<User> getEntityList() throws Exception;
+////    public boolean deleteEntity(long id) throws Exception;
+//
+//
+//}

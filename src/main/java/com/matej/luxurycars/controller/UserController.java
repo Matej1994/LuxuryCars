@@ -9,7 +9,10 @@ import com.matej.luxurycars.services.UserServices;
 import org.apache.log4j.Logger;
 import com.matej.luxurycars.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,66 +26,37 @@ import com.matej.luxurycars.model.User;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserServices userServices;
+    private UserServices userServices;
 
     static final Logger logger = Logger.getLogger(UserController.class);
 
-    /* Submit form in Spring Restful Services */
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    Status addUser(@RequestBody User user) {
-        try {
-            userServices.addEntity(user);
-            return new Status(1, "Użytkownik został dodany pomyślnie");
-        } catch (Exception e) {
-            // e.printStackTrace();
-            return new Status(0, e.toString());
-        }
-
+    @Autowired
+    public UserController(UserServices userServices) {
+        this.userServices = userServices;
     }
 
-    /* Ger a single objct in Json form in Spring Rest Services */
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<User> getALlUser(){
+        return new ResponseEntity(userServices.findAll(), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    User getEmployee(@PathVariable("id") long id) {
-        User user = null;
-        try {
-            user = userServices.getEntityById(id);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return user;
+    @ResponseBody
+    public ResponseEntity<User> getUser(@PathVariable Long id){
+        User user = userServices.findById(id);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
-    /* Getting List of objects in Json format in Spring Restful Services */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ResponseBody
-    List<User> getEmployee() {
-
-        List<User> userList = null;
-        try {
-            userList = userServices.getEntityList();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return userList;
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        User _user = userServices.save(user);
+        return new ResponseEntity(_user, HttpStatus.OK);
     }
 
-    /* Delete an object from DB in Spring Restful Services */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    Status deleteUser(@PathVariable("id") long id) {
-
-        try {
-            userServices.deleteEntity(id);
-            return new Status(1, "Użytkownik usunięty pomyślnie!");
-        } catch (Exception e) {
-            return new Status(0, e.toString());
-        }
-
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{userId}")
+    public void deleteById(@PathVariable Long id) {
+        userServices.deleteById(id);
     }
 }

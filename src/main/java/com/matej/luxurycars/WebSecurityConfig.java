@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
             .and()
                 .authorizeRequests()
-                .antMatchers("/reservation").permitAll()
+                .antMatchers("/reservation", "/car").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/user/*", "/user").hasRole("ADMIN")
                 .anyRequest().fullyAuthenticated()
             .and()

@@ -45,20 +45,4 @@ public class CarControllerTest {
                 .andExpect(status().isOk());
     }
 
-
-//    @Test
-//    public void getCar() throws Exception {
-//    }
-//
-//    @Test
-//    public void addCar() throws Exception {
-//    }
-
-//    @Test
-//    @WithMockUser(roles = {"ADMIN"})
-//    public void deleteById() throws Exception {
-//        mockMvc.perform(delete("/users/{id}", user.getId()))
-//                .andExpect(status().isOk();
-//    }
-
 }

@@ -47,17 +47,5 @@ public class UserControllerTest {
                 get("/user"))
                 .andExpect(status().isOk());
     }
-
-//    @Test
-//    public void getCar() throws Exception {
-//    }
-//
-//    @Test
-//    public void addCar() throws Exception {
-//    }
-//
-//    @Test
-//    public void deleteById() throws Exception {
-//    }
-
+    
 }

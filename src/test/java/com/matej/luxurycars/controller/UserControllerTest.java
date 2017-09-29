@@ -47,5 +47,5 @@ public class UserControllerTest {
                 get("/user"))
                 .andExpect(status().isOk());
     }
-    
+
 }

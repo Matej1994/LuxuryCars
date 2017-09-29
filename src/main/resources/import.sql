@@ -1,1 +1,3 @@
-INSERT INTO user (email, first_name, last_name, password, phone, role, username, enabled) VALUES ('asd@email.com', 'Asd', 'Asd', '$2a$04$zmAoFK6ExGb9rt4UKXEP5elqiOtY/GOVc.Xvi6k2iSjpH7CU6WWKy', '123123', 'ROLE_ADMIN', 'admin', true);
+INSERT INTO luxurycars_db.car (brand, engine_capacity, model, v_max) VALUES ('Seat', '1.9', 'Leon', '190');
+INSERT INTO luxurycars_db.user (email, first_name, last_name, password, phone, role, username, enabled) VALUES ('sfa@kag.pl', 'afs', 'asd', '$2a$04$ObedcfowV7JuehC7w4C5Zu3lca1pWXOplnXNWL/0KxT2rFL24j4qq', '125125', 'ROLE_ADMIN', 'admin', true);
+INSERT INTO luxurycars_db.user (email, first_name, last_name, password, phone, role, username, enabled) VALUES ('asd@asf.pl', 'asf', 'asfa', '$2a$04$ObedcfowV7JuehC7w4C5Zu3lca1pWXOplnXNWL/0KxT2rFL24j4qq', '215125', 'ROLE_USER', 'user', true);

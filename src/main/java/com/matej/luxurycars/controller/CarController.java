@@ -35,17 +35,7 @@ public class CarController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Car> getAllCar(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Boolean isAdmin = authentication.getAuthorities()
-                .stream()
-                .anyMatch(o -> o.getAuthority().equals("ROLE_ADMIN"));
-
-        if (isAdmin) {
-            return new ResponseEntity(carServices.findAll(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity(carServices.findExpirated(LocalDate.now()), HttpStatus.OK);
-        }
-
+        return new ResponseEntity(carServices.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

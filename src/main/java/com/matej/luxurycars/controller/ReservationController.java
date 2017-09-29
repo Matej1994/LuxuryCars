@@ -36,10 +36,13 @@ public class ReservationController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Reservation> getAllReservation(Authentication authentication){
+        Boolean isAdmin = false;
 
-        Boolean isAdmin = authentication.getAuthorities()
-                .stream()
-                .anyMatch(o -> o.getAuthority().equals("ROLE_ADMIN"));
+        if (authentication != null) {
+            isAdmin = authentication.getAuthorities()
+                    .stream()
+                    .anyMatch(o -> o.getAuthority().equals("ROLE_ADMIN"));
+        }
 
         if (isAdmin) {
             return new ResponseEntity(reservationServices.findAll(), HttpStatus.OK);

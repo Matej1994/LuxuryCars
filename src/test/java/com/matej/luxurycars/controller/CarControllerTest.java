@@ -46,13 +46,13 @@ public class CarControllerTest {
     }
 
 
-    @Test
-    public void getCar() throws Exception {
-    }
-
-    @Test
-    public void addCar() throws Exception {
-    }
+//    @Test
+//    public void getCar() throws Exception {
+//    }
+//
+//    @Test
+//    public void addCar() throws Exception {
+//    }
 
 //    @Test
 //    @WithMockUser(roles = {"ADMIN"})

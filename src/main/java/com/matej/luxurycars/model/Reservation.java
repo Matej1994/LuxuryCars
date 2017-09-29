@@ -3,10 +3,12 @@ package com.matej.luxurycars.model;
 /**
  * Created by Mateusz on 2017-09-27.
  */
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -29,16 +31,13 @@ public class Reservation implements Serializable {
     @JoinColumn(name="car_id")
     private Car car;
 
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    @Column(name = "start_date")
-    private LocalDate startDate;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    @Column(name = "start_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    private Date startDate;
 
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    @Column(name = "expiration_date")
-    private LocalDate expirationDate;
-
-    @Column(name = "status")
-    private String status;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    @Column(name = "expiration_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    private Date expirationDate;
 
     public Long getId() {
         return id;
@@ -64,27 +63,20 @@ public class Reservation implements Serializable {
         this.car = car;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

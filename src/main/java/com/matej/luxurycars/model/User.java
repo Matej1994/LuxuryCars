@@ -43,7 +43,8 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
-
+    @Column(name = "enabled")
+    private boolean enabled;
 
     public Long getId() {
         return id;
@@ -107,5 +108,13 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
